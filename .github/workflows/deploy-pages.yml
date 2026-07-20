@@ -1,18 +1,12 @@
-name: Deploy Sweetness preview to GitHub Pages
+name: Deploy to GitHub Pages
 
-# INTERIM SETUP — this branch lives inside wrkn-grp-website until the
-# dedicated sweetness-studios-website repo exists. A repo has exactly one
-# Pages site and main already serves the WRKN GRP site from it, so this
-# workflow deploys a combined artifact: WRKN GRP (built from main) stays
-# at the root, Sweetness is served under /sweetness/.
-#
-# Caveat: pushes to main redeploy only the WRKN root, which drops the
-# /sweetness path until this workflow runs again — re-run it from the
-# Actions tab (workflow_dispatch) if the preview 404s. Once the site
-# moves to its own repo, delete the wrkn build steps and the subpath.
+# Standalone deploy for the Sweetness Studios site on its own repo and
+# custom domain (sweetnesstudios.online). The site is served from the root
+# of the domain, so there is no base path. The domain is pinned by the
+# CNAME file in public/, which the static export copies into out/.
 on:
   push:
-    branches: [claude/sweetness-studios-website-qoikdn]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,7 +14,6 @@ permissions:
   pages: write
   id-token: write
 
-# Share the Pages concurrency group with main's deploys; newest wins.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -30,11 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          path: wrkn
 
       - uses: actions/setup-node@v4
         with:
@@ -46,32 +34,20 @@ jobs:
         with:
           enablement: true
 
-      - name: Build WRKN GRP site (root)
-        working-directory: wrkn
+      - name: Build static export
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Custom domain serves from the root, so no base path.
+          NEXT_PUBLIC_BASE_PATH: ""
         run: |
           npm ci
           npm run build
 
-      - name: Build Sweetness site (/sweetness)
-        env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}/sweetness
-        run: |
-          npm ci
-          npm run build
-
-      - name: Combine sites
-        run: |
-          mkdir -p site
-          cp -r wrkn/out/. site/
-          mkdir -p site/sweetness
-          cp -r out/. site/sweetness/
-          touch site/.nojekyll
+      # Bypass Jekyll so the _next/ asset folder is served as-is.
+      - run: touch out/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: out
 
   deploy:
     needs: build
