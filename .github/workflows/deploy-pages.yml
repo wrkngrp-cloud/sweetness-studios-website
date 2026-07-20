@@ -28,12 +28,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - name: Build static export
         env:
           # Custom domain serves from the root, so no base path.
