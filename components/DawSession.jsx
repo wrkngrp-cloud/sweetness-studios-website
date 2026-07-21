@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 /*
  * The principles, staged as a session in an arrangement view: four
@@ -52,6 +53,17 @@ function ClipWave({ color, seed }) {
 }
 
 export default function DawSession({ tracks }) {
+  const reduce = useReducedMotion();
+
+  // Land the clips on mount, not on scroll. whileInView did not fire
+  // reliably on iOS Safari, which left the first clip (and sometimes all)
+  // invisible. Mount is deterministic, so the tracks always appear.
+  const [played, setPlayed] = useState(false);
+  useEffect(() => {
+    const r = requestAnimationFrame(() => setPlayed(true));
+    return () => cancelAnimationFrame(r);
+  }, []);
+
   return (
     <div className="daw" role="list">
       <div className="daw-ruler" aria-hidden>
@@ -77,9 +89,12 @@ export default function DawSession({ tracks }) {
                   borderLeft: `3px solid ${c.bar}`,
                   marginLeft: `${i * 7}%`,
                 }}
-                initial={{ width: "3%", opacity: 0 }}
-                whileInView={{ width: `${66 - i * 5}%`, opacity: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
+                initial={reduce ? false : { width: "6%", opacity: 0 }}
+                animate={
+                  reduce || played
+                    ? { width: `${66 - i * 5}%`, opacity: 1 }
+                    : { width: "6%", opacity: 0 }
+                }
                 transition={{
                   duration: 1.1,
                   delay: 0.25 + i * 0.28,

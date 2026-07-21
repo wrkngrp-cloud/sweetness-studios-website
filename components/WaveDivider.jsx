@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useLayoutEffect, useMemo, useId } from "react";
+import { useState, useEffect, useRef, useLayoutEffect, useMemo, useId } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /*
@@ -60,6 +60,16 @@ export default function WaveDivider({ flip = false }) {
   }, []);
 
   const path = useMemo(() => buildPath(width), [width]);
+
+  // Draw on mount, not on scroll. whileInView (IntersectionObserver) does
+  // not fire reliably on iOS Safari here, which left the divider invisible.
+  // Mount always happens, so the wave always appears.
+  const [drawn, setDrawn] = useState(false);
+  useEffect(() => {
+    const r = requestAnimationFrame(() => setDrawn(true));
+    return () => cancelAnimationFrame(r);
+  }, []);
+
   const draw = reduce
     ? { pathLength: 1, opacity: 1 }
     : {
@@ -117,9 +127,8 @@ export default function WaveDivider({ flip = false }) {
           strokeOpacity="0.22"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          initial={reduce ? undefined : { pathLength: 0, opacity: 0 }}
-          whileInView={draw}
-          viewport={{ once: true, margin: "-60px" }}
+          initial={reduce ? false : { pathLength: 0, opacity: 0 }}
+          animate={reduce || drawn ? draw : { pathLength: 0, opacity: 0 }}
         />
         <motion.path
           d={path}
@@ -129,9 +138,8 @@ export default function WaveDivider({ flip = false }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
-          initial={reduce ? undefined : { pathLength: 0, opacity: 0 }}
-          whileInView={draw}
-          viewport={{ once: true, margin: "-60px" }}
+          initial={reduce ? false : { pathLength: 0, opacity: 0 }}
+          animate={reduce || drawn ? draw : { pathLength: 0, opacity: 0 }}
         />
       </motion.svg>
     </div>
