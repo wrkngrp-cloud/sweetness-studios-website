@@ -9,7 +9,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export const metadata = {
   title: "Kuda · The Sound of More Life · Sweetness Studios",
   description:
-    "The sonic identity for Kuda's More Life rebrand: a three-second Yoruba welcome, a kalimba played close to its real tone, and naira counted by hand. Plus the sound design for the launch film.",
+    "The sonic identity for Kuda's More Life rebrand: a three-second welcome in the indigenous language of Lagos, an agogo and a kalimba reshaped by hand, and naira counted note by note. Plus the sound design for the launch film.",
 };
 
 const PRINCIPLES = [
@@ -20,8 +20,8 @@ const PRINCIPLES = [
   },
   {
     name: "Real",
-    role: "The texture is barely touched.",
-    copy: "The kalimba sits close to its real tone, percussive and honest: the Ugede or Molo of Igbo tradition, a cousin to the Yoruba Agidigbo. Under the E Kaabo lift and the rising wordmark runs a counted-money sound, so the welcome carries a literal message. Your money is at home here, and so are you.",
+    role: "True textures, shaped by hand.",
+    copy: "Two indigenous instruments carry the mark: the kalimba and the agogo. Both were modified with intent, pitched and layered and processed to sit inside a modern fintech mix, and never scrubbed of what makes them themselves. The kalimba keeps its woody, thumb-struck attack. The agogo keeps the bright iron ring it has in a live band. Designed enough to feel new, real enough that a Nigerian ear places them on the first note. Under the welcome runs a counted-money sound, so the greeting carries a literal message. Your money is at home here, and so are you.",
   },
   {
     name: "Strong Spirit",
@@ -67,9 +67,9 @@ export default function KudaCaseStudy() {
             <p className="body-lg dim measure mt-2">
               Nigeria&rsquo;s biggest digital bank rebuilt itself around one
               promise: more life. The studio gave that promise a voice you can
-              hear in three seconds. A welcome, answered. Built from a Yoruba
-              greeting, a thumb piano played close to its real tone, and the
-              sound of naira counted by hand.
+              hear in three seconds. A welcome, answered. Built from an
+              indigenous greeting, an agogo and a kalimba reshaped by hand, and
+              the sound of naira counted note by note.
             </p>
           </Intro>
           <Intro delay={0.8}>
@@ -137,46 +137,51 @@ export default function KudaCaseStudy() {
                 enough to live inside a banking app, right next to a successful
                 transfer. And carry the whole feeling of More Life in the time
                 it takes to open the app. Nigerian music is warm, so the palette
-                leaned on instruments with natural resonance: kalimba, agogo,
-                shekere, muted guitar, wooden percussion. Even when a sound was
-                synthesised, it had to keep its harmonic warmth. Never cold,
-                never digitally flat.
+                leaned on indigenous instruments with natural resonance: the
+                kalimba, the agogo, the shekere. Even when a sound was shaped or
+                processed, it had to keep its harmonic warmth. Never cold, never
+                digitally flat.
               </p>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* The idea: the one Kuda-purple band */}
-      <section className="kuda-band" aria-label="The idea">
+      {/* The idea: the welcome, written as a conversation */}
+      <section className="section idea bg-glow" aria-label="The idea">
         <div className="container">
           <Reveal>
-            <p className="kuda-band-kicker">The idea</p>
-            <p className="kuda-band-lead">
-              The whole mark is an arrival, written as a short conversation. Two
-              phrases, shaped after Yoruba, the language of Lagos, where Kuda is
-              at home.
+            <p className="kicker mb-1">The idea</p>
+            <h2 className="display-3 mb-2" style={{ maxWidth: "22ch" }}>
+              An arrival, written as a short conversation.
+            </h2>
+            <p className="dim measure">
+              Two phrases from the indigenous language of Lagos, where Kuda is
+              at home. Kuda speaks first, as the host. The listener answers, in
+              the relieved, grateful tone of someone just let into something
+              better.
             </p>
           </Reveal>
-          <div className="kuda-exchange">
+
+          <div className="exchange">
             <Reveal>
-              <div className="kuda-line">
-                <span className="kuda-phrase">E Kaabo</span>
-                <span className="kuda-gloss">Welcome. Kuda speaks first, as the host.</span>
+              <div className="utterance">
+                <span className="utterance-role">Kuda &middot; the host</span>
+                <span className="utterance-phrase">E Kaabo</span>
+                <span className="utterance-gloss">Welcome. Into a new reality.</span>
               </div>
             </Reveal>
-            <Reveal delay={0.12}>
-              <div className="kuda-line kuda-line-answer">
-                <span className="kuda-phrase">E shey</span>
-                <span className="kuda-gloss">
-                  Thank you. The listener answers, in the relieved, grateful
-                  tone of someone just let into something better.
-                </span>
+            <Reveal delay={0.14}>
+              <div className="utterance utterance-answer">
+                <span className="utterance-role">The listener &middot; answering</span>
+                <span className="utterance-phrase">E shey</span>
+                <span className="utterance-gloss">Thank you. For more than I expected.</span>
               </div>
             </Reveal>
           </div>
+
           <Reveal>
-            <p className="kuda-band-foot">That back and forth is the entire logo.</p>
+            <p className="idea-foot">That back and forth is the entire logo.</p>
           </Reveal>
         </div>
       </section>

@@ -53,9 +53,9 @@ export default function Work() {
                 <span className="kicker mb-1">Case study · Kuda</span>
                 <h2 className="display-3 mb-1">The sound of More Life</h2>
                 <span className="dim measure" style={{ display: "block" }}>
-                  A three-second Yoruba welcome for Nigeria&rsquo;s biggest
+                  A three-second indigenous welcome for Nigeria&rsquo;s biggest
                   digital bank, plus the sound design for the launch film. Built
-                  from a kalimba, a greeting, and naira counted by hand.
+                  from an agogo, a kalimba, and naira counted by hand.
                 </span>
                 <span className="text-link mt-2" style={{ display: "inline-flex" }}>
                   Read the case study →
