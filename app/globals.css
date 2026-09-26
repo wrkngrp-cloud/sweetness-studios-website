@@ -1283,3 +1283,306 @@ main {
     opacity: 0.85;
   }
 }
+
+/* ============================================================
+   Case study (Kuda) — media frames, the one purple band,
+   principle list, meta, swatches
+   ============================================================ */
+
+.cs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 4vw, 3rem);
+  margin: 0;
+}
+.cs-meta div {
+  display: grid;
+  gap: 0.25rem;
+}
+.cs-meta dt {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ember-hi);
+}
+.cs-meta dd {
+  margin: 0;
+  font-size: 0.95rem;
+  max-width: 28ch;
+}
+.cs-back {
+  color: var(--ember-hi);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease;
+}
+.cs-back:hover {
+  border-bottom-color: currentColor;
+}
+
+.media-frame {
+  margin: 0;
+}
+.cs-media-wrap {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+.media-frame-inner {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--hairline);
+  background: #05030a;
+}
+.media-frame-inner video,
+.media-frame-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.media-frame.is-accent .media-frame-inner {
+  border-color: rgba(185, 133, 245, 0.45);
+  box-shadow: 0 0 0 1px rgba(185, 133, 245, 0.12),
+    0 40px 90px -50px rgba(120, 60, 220, 0.55);
+}
+.media-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink);
+  background: radial-gradient(
+    120% 90% at 50% 55%,
+    rgba(0, 0, 0, 0.18),
+    rgba(0, 0, 0, 0.58)
+  );
+  transition: background 0.3s ease;
+}
+.media-play:hover {
+  background: radial-gradient(
+    120% 90% at 50% 55%,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.42)
+  );
+}
+.media-play-btn {
+  width: clamp(54px, 9vw, 66px);
+  height: clamp(54px, 9vw, 66px);
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(10, 5, 0, 0.35);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.media-play:hover .media-play-btn {
+  background: var(--gold);
+  transform: translateY(-2px);
+}
+.media-play-btn svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 3px;
+  fill: var(--gold);
+  transition: fill 0.25s ease;
+}
+.media-play:hover .media-play-btn svg {
+  fill: #170a02;
+}
+.media-play-text {
+  display: grid;
+  gap: 0.2rem;
+  text-align: center;
+}
+.media-play-label {
+  font-weight: 600;
+}
+.media-play-hint {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.media-cap {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  max-width: 54ch;
+}
+
+.kuda-band {
+  background: radial-gradient(
+      120% 100% at 12% 0%,
+      rgba(185, 133, 245, 0.26),
+      transparent 55%
+    ),
+    linear-gradient(160deg, #3a1a8c 0%, #26105e 70%, #1b0a46 100%);
+  color: #f3efe6;
+  padding: clamp(4rem, 12vw, 9rem) 0;
+  overflow: hidden;
+}
+.kuda-band-kicker {
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d9c2ff;
+  margin-bottom: 1.2rem;
+}
+.kuda-band-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+  line-height: 1.25;
+  max-width: 26ch;
+  color: #f7f3ec;
+}
+.kuda-exchange {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.6rem);
+  margin: clamp(2.5rem, 6vw, 4rem) 0;
+}
+.kuda-line {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 42ch;
+}
+.kuda-line-answer {
+  justify-self: end;
+  text-align: right;
+}
+.kuda-phrase {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+  font-size: clamp(3rem, 12vw, 7rem);
+  color: #ffffff;
+}
+.kuda-line-answer .kuda-phrase {
+  color: #cbb0f7;
+}
+.kuda-gloss {
+  color: rgba(243, 239, 230, 0.72);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.kuda-band-foot {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  color: #eaddff;
+}
+
+.principle-list {
+  display: grid;
+}
+.principle {
+  padding: clamp(1.7rem, 4vw, 2.6rem) 0;
+  border-top: 1px solid var(--hairline);
+}
+.principle:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.principle-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.principle-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1;
+}
+.principle-role {
+  color: var(--gold);
+  font-size: 1rem;
+  margin: 0.5rem 0 0.7rem;
+}
+.mini-wave {
+  width: clamp(84px, 20vw, 170px);
+  height: 26px;
+  flex: none;
+  opacity: 0.8;
+}
+.mini-wave rect {
+  fill: var(--ember);
+}
+
+.swatches {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.swatch {
+  width: clamp(72px, 20vw, 108px);
+  height: clamp(72px, 20vw, 108px);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.5rem;
+  color: #fff;
+  border: 1px solid var(--hairline);
+}
+.swatch small {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.cs-close {
+  max-width: 60ch;
+}
+
+/* Featured case-study card (Work page) */
+.feature-case {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  padding: clamp(1.1rem, 3vw, 1.8rem);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: var(--lift);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.feature-case:hover {
+  border-color: rgba(185, 133, 245, 0.5);
+  transform: translateY(-2px);
+}
+.feature-case-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--hairline);
+}
+.feature-case-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.feature-case:hover .feature-case-media img {
+  transform: scale(1.03);
+}
+@media (max-width: 720px) {
+  .feature-case {
+    grid-template-columns: 1fr;
+  }
+}

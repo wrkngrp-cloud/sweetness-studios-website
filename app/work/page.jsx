@@ -1,8 +1,11 @@
+import Link from "next/link";
 import WaveDivider from "../../components/WaveDivider";
 import Reveal from "../../components/Reveal";
 import Intro from "../../components/Intro";
 import AudioPlayer from "../../components/AudioPlayer";
 import { TRACKS } from "../../lib/credits";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata = {
   title: "Work · Sweetness Studios",
@@ -33,6 +36,37 @@ export default function Work() {
       </section>
 
       <WaveDivider />
+
+      {/* Featured case study */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <Reveal>
+            <p className="kicker mb-2">Sonic branding · Featured</p>
+          </Reveal>
+          <Reveal>
+            <Link href="/work/kuda-sonic-identity/" className="feature-case" data-cursor="Open">
+              <span className="feature-case-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`${basePath}/kuda/launch-poster.jpg`} alt="Kuda More Life campaign" loading="lazy" />
+              </span>
+              <span className="feature-case-body">
+                <span className="kicker mb-1">Case study · Kuda</span>
+                <h2 className="display-3 mb-1">The sound of More Life</h2>
+                <span className="dim measure" style={{ display: "block" }}>
+                  A three-second Yoruba welcome for Nigeria&rsquo;s biggest
+                  digital bank, plus the sound design for the launch film. Built
+                  from a kalimba, a greeting, and naira counted by hand.
+                </span>
+                <span className="text-link mt-2" style={{ display: "inline-flex" }}>
+                  Read the case study →
+                </span>
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <WaveDivider flip />
 
       {/* Artists */}
       <section className="section" style={{ paddingTop: 0 }}>
